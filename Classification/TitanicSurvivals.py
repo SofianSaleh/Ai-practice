@@ -33,10 +33,10 @@ model.predict(X)
 y_pred = model.predict(X)
 
 # To check how many ar true
-print((y == y_pred).sum())
+# print((y == y_pred).sum())
 
 # To get the precentage y.shape[0] is the full number
-print((y == y_pred).sum() / y.shape[0])
+# print((y == y_pred).sum() / y.shape[0])
 
 # Printin the score
 print(model.score(X, y))
