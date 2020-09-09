@@ -1,6 +1,10 @@
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
+# To predict precision and Recall
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+# To find the false positive and the false negatives and the true positives and the true negatives
+from sklearn.metrics import confusion_matrix
 
 # Read the file
 df = pd.read_csv('https://sololearn.com/uploads/files/titanic.csv')
@@ -39,4 +43,17 @@ y_pred = model.predict(X)
 # print((y == y_pred).sum() / y.shape[0])
 
 # Printin the score
-print(model.score(X, y))
+# print(model.score(X, y))
+
+# print("accuracy: ", accuracy_score(y, y_pred))
+# print("precision: ", precision_score(y, y_pred))
+# print("recall: ", recall_score(y, y_pred))
+# print("f1 score: ", f1_score(y, y_pred))
+
+# [
+# [true Negative, False Negative]
+# [false Positive, True Positive]
+# ]
+
+
+print(confusion_matrix(y, y_pred))
