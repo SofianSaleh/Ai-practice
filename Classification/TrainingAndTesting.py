@@ -16,7 +16,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y)
 model = LogisticRegression()
 model.fit(X_train, y_train)
 
-y_pred = model.predict(y_test)
+y_pred = model.predict(X_test)
 
 print("accuracy:", accuracy_score(y_test, y_pred))
 print("precision:", precision_score(y_test, y_pred))
