@@ -3,6 +3,8 @@ from sklearn.metrics import recall_score, precision_recall_fscore_support
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 
+import plotlib as plt
+
 sensitivity_score = recall_score
 
 
@@ -24,7 +26,17 @@ model = LogisticRegression()
 model.fit(X_train, y_train)
 
 # Adjusting the threshhold
-y_pred = model.predict_proba(X_test)[:, 1] > 0.75
+# y_pred = model.predict_proba(X_test)[:, 1] > 0.75
+y_pred_proba = model.predict_proba(X_test)
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba[:, 1])
 
-print("sensitivity:", sensitivity_score(y_test, y_pred))
-print("specificity:", specificity_score(y_test, y_pred))
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.0])
+plt.xlabel('1 - specificity')
+plt.ylabel('sensitivity')
+plt.show()
+
+# print("sensitivity:", sensitivity_score(y_test, y_pred))
+# print("specificity:", specificity_score(y_test, y_pred))
