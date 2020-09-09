@@ -8,6 +8,7 @@ sensitivity_score = recall_score
 
 def specificity_score(y_true, y_pred):
     p, r, f, s = precision_recall_fscore_support(y_true, y_pred)
+    # r[0] gives specificity and  r[1] gives snsitivity
     return r[0]
 
 
@@ -21,7 +22,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=5)
 
 model = LogisticRegression()
 model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+
+# Adjusting the threshhold
+y_pred = model.predict_proba(X_test)[:, 1] > 0.75
 
 print("sensitivity:", sensitivity_score(y_test, y_pred))
 print("specificity:", specificity_score(y_test, y_pred))
