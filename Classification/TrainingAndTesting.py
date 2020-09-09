@@ -5,7 +5,8 @@ from sklearn.model_selection import train_test_split
 df = pd.read_csv('https://sololearn.com/uploads/files/titanic.csv')
 df['male'] = df['Sex'] == 'male'
 
-x = [['Pclass', 'male', 'Age', 'Siblings/Spouses', 'Parents/Children', 'Fare']].values
+x = df[['Pclass', 'male', 'Age', 'Siblings/Spouses',
+        'Parents/Children', 'Fare']].values
 y = df['Survived'].values
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
